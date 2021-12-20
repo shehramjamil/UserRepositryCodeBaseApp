@@ -28,7 +28,7 @@ class RepositoryCommitsDetailFragment @Inject constructor() : DaggerFragment() {
     //Databinding object
     private var userRepositoryDetailScreenBinding: UserRepositoryDetailScreenBinding? = null
     private val arguments: RepositoryCommitsDetailFragmentArgs by navArgs()
-
+    //Let's test
     @Inject
     @JvmField
     var viewModelFactory: RepositoryCommitsViewModelFactory? = null
