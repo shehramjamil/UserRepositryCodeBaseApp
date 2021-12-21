@@ -15,7 +15,7 @@ interface Api {
 
     //@Headers("Authorization: token 'paste_ur_token_here'")
     @GET
-    suspend fun getUserGithunRepositories(@Url url: String): List<UserRepositoriesModel>
+    suspend fun getUserGithubRepositories(@Url url: String): List<UserRepositoriesModel>
 
     //@Headers("Authorization: token 'paste_ur_token_here'")
     @GET

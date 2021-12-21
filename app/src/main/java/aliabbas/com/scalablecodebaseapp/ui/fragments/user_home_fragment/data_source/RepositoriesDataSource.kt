@@ -11,7 +11,7 @@ class RepositoriesDataSource @Inject constructor(var api: Api) :
 
     override suspend fun getListUserRepositories(): ApiResponse {
         val listUserRepositories =
-            api.getUserGithunRepositories(Constants.USER_REPO_LINK)
+            api.getUserGithubRepositories(Constants.USER_REPO_LINK)
         return ApiResponse.ApiResponseSuccess(listUserRepositories)
     }
 
