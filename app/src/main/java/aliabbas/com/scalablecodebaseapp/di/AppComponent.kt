@@ -1,8 +1,9 @@
 package aliabbas.com.scalablecodebaseapp.di
 
+import aliabbas.com.scalablecodebaseapp.AndroidApplication
 import aliabbas.com.scalablecodebaseapp.di.app_dependencies.ActivityBindingModule
 import aliabbas.com.scalablecodebaseapp.di.app_dependencies.ApiServiceModule
-import aliabbas.com.scalablecodebaseapp.AndroidApplication
+import aliabbas.com.scalablecodebaseapp.di.app_dependencies.DataSourceModule
 import aliabbas.com.scalablecodebaseapp.di.app_dependencies.RepositoryModule
 import android.app.Application
 import dagger.BindsInstance
@@ -27,7 +28,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [AndroidSupportInjectionModule::class,
-        ApiServiceModule::class, ActivityBindingModule::class,RepositoryModule::class]
+        ApiServiceModule::class, ActivityBindingModule::class,
+        RepositoryModule::class, DataSourceModule::class]
 )
 interface AppComponent : AndroidInjector<AndroidApplication> {
     // Gives us syntactic sugar. we can then do DaggerAppComponent.builder().application(this).build().inject(this);

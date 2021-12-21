@@ -16,8 +16,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ActivityScoped
@@ -38,16 +36,6 @@ class UserRepositoriesFragment @Inject constructor() : DaggerFragment() {
     @JvmField
     var userRepositoriesAdapterAdapter: UserRepositoriesAdapter? = null
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //Setting up the specific ViewModel to this Fragment
-        /*userRepositoriesViewModel =
-            ViewModelProvider(this, viewModelFactory!!).get(
-                UserRepositoriesViewModel::class.java
-            )*/
-    }
-
     @Suppress("UNCHECKED_CAST")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +45,8 @@ class UserRepositoriesFragment @Inject constructor() : DaggerFragment() {
         userRepositoriesScreenBinding =
             DataBindingUtil.inflate(inflater, R.layout.user_repositories_screen, container, false)
         //Binding the view to the lifecycle
-        userRepositoriesScreenBinding!!.lifecycleOwner = this
+        userRepositoriesScreenBinding!!.viewModel = userRepositoriesViewModel
+        userRepositoriesScreenBinding!!.lifecycleOwner = this.viewLifecycleOwner
         initializeView()
         userRepositoriesViewModel.listUserRepositories.observe(viewLifecycleOwner, { apiResponse ->
             when (apiResponse) {

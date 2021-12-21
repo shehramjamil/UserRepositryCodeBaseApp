@@ -2,10 +2,8 @@ package aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment
 
 import aliabbas.com.scalablecodebaseapp.R
 import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.ApiResponse
-import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.UserRepositoriesModel
-import aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment.repository.UserRepositoriesRepository
+import aliabbas.com.scalablecodebaseapp.data.UserRepository
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
@@ -13,10 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,18 +21,12 @@ import javax.inject.Inject
  * 1- Getting this User's repositories : "https://api.github.com/users/mralexgray/repos"
  */
 class UserRepositoriesViewModel @Inject constructor(
-    var userRepositoriesRepository: UserRepositoriesRepository
+    var userRepository: UserRepository
 ) : ViewModel() {
 
-    private var _listUserRepositories: MutableLiveData<ApiResponse> =
-        userRepositoriesRepository.listUserRepositories
+    private val _listUserRepositories = MutableLiveData<ApiResponse>()
     var listUserRepositories: MutableLiveData<ApiResponse> =
         _listUserRepositories
-
-
-    private val _sharedViewEffects = MutableSharedFlow<UserRepositoriesModel>() // 1
-
-    val sharedViewEffects = _sharedViewEffects.asSharedFlow() // 2
 
     private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
         _listUserRepositories.value = ApiResponse.ApiFailure(exception.message!!)
@@ -45,14 +34,14 @@ class UserRepositoriesViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(exceptionHandler) {
-            userRepositoriesRepository.getListUserRepositoriesLiveData()
-
-            /*for (i in 1..100) { // 2
-                delay(5000) // 3
-                _sharedViewEffects.emit(UserRepositoriesModel()) // 4
-                Log.i("viewModelScope", "viewModelScope: start")
-            }*/
+            _listUserRepositories.value =
+                userRepository.getListUserRepositoriesLiveData()
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
     }
 
     companion object {

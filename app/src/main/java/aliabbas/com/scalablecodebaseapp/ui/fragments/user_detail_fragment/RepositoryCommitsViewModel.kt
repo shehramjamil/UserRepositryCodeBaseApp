@@ -2,7 +2,7 @@ package aliabbas.com.scalablecodebaseapp.ui.fragments.user_detail_fragment
 
 import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.ApiResponse
 import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.UserRepositoriesModel
-import aliabbas.com.scalablecodebaseapp.ui.fragments.user_detail_fragment.repository.RepositoryCommitDetails
+import aliabbas.com.scalablecodebaseapp.data.CommitRepositoryRepository
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,7 +17,7 @@ import javax.inject.Inject
  *
  */
 class RepositoryCommitsViewModel @Inject
-constructor(private val repositoryCommitDetails: RepositoryCommitDetails) : ViewModel() {
+constructor(private val repositoryCommitDetails: CommitRepositoryRepository) : ViewModel() {
 
     var repositoryDetailModel = MutableLiveData<UserRepositoriesModel>()
 

@@ -16,5 +16,5 @@ abstract class HomeActivityRefMod {
     //With the help of this We can Inject the activity in Dependent classes
     //Making activity reference available for injection.
     @Binds
-    abstract fun homeActivityRefrence(homeActivity: HomeActivity): Activity
+    abstract fun homeActivityReference(homeActivity: HomeActivity): Activity
 }

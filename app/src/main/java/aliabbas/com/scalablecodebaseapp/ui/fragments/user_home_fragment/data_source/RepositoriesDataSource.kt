@@ -3,18 +3,16 @@ package aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment.data_so
 import aliabbas.com.scalablecodebaseapp.app_service_calls.Api
 import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.ApiResponse
 import aliabbas.com.scalablecodebaseapp.commons.Constants
-import androidx.lifecycle.MutableLiveData
+import aliabbas.com.scalablecodebaseapp.data.remote.RepositoryDataSource
 import javax.inject.Inject
 
-class UserRepositoriesDataSource @Inject constructor(var api: Api) {
+class RepositoriesDataSource @Inject constructor(var api: Api) :
+    RepositoryDataSource {
 
-    val listUserRepositoriesLiveData: MutableLiveData<ApiResponse> = MutableLiveData()
-
-    suspend fun getListUserRepositories() {
+    override suspend fun getListUserRepositories(): ApiResponse {
         val listUserRepositories =
             api.getUserGithunRepositories(Constants.USER_REPO_LINK)
-        listUserRepositoriesLiveData.value =
-            ApiResponse.ApiResponseSuccess(listUserRepositories)
+        return ApiResponse.ApiResponseSuccess(listUserRepositories)
     }
 
 }

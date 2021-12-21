@@ -6,6 +6,10 @@
     <data>
 
         <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment.UserRepositoriesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

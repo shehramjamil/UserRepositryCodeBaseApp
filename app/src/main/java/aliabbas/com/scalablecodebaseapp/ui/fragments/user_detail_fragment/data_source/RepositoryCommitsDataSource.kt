@@ -6,6 +6,7 @@ import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.repo_commits
 import aliabbas.com.scalablecodebaseapp.commons.Constants.COMMITS
 import aliabbas.com.scalablecodebaseapp.commons.Constants.REPO_COMMITS_URL
 import aliabbas.com.scalablecodebaseapp.custom_views.model.BarData
+import aliabbas.com.scalablecodebaseapp.data.remote.RepositoryCommitsRemoteDataSource
 import android.annotation.SuppressLint
 import android.util.Log
 import kotlinx.coroutines.flow.Flow
@@ -18,9 +19,10 @@ import kotlin.collections.ArrayList
  * DataSource class for getting all commit related details for user repository.
  *
  */
-class RepositoryCommitsDataSource @Inject constructor(var api: Api) {
+class RepositoryCommitsDataSource @Inject constructor(var api: Api) :
+    RepositoryCommitsRemoteDataSource {
 
-    fun getCommitDetailsRepository(repositoryName: String) =
+    override suspend fun getCommitDetailsRepository(repositoryName: String) =
         repositoryCommitDetailsByMonths(repositoryName)
 
 
