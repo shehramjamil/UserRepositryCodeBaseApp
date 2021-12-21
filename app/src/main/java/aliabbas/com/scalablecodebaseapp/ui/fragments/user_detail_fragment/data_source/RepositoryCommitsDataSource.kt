@@ -41,7 +41,7 @@ class RepositoryCommitsDataSource @Inject constructor(var api: Api) :
             val sortDatesForCommits: ArrayList<BarData> =
                 sortDatesForCommits(repositoryCommitData)
             emit(ApiResponse.ApiResponseSuccess(sortDatesForCommits))
-            Log.i("commit respo", "commit respo: start")
+            Log.i("commit repo", "commit repo: start")
         } catch (ex: Exception) {
             emit(ApiResponse.ApiFailure("Exception occur: ${ex.message}"))
         }

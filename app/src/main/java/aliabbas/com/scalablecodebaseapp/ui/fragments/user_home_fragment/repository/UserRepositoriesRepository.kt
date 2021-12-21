@@ -5,7 +5,7 @@ import aliabbas.com.scalablecodebaseapp.data.UserRepository
 import aliabbas.com.scalablecodebaseapp.data.remote.RepositoryDataSource
 import javax.inject.Inject
 
-class UserRepositoriesRepository @Inject constructor(var dataSource: RepositoryDataSource) :
+class UserRepositoriesRepository @Inject constructor(private var dataSource: RepositoryDataSource) :
     UserRepository {
 
     override suspend fun getListUserRepositoriesLiveData(): ApiResponse {

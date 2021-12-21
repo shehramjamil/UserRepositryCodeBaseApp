@@ -13,8 +13,8 @@ import javax.inject.Inject
  * This Class is used for
  *
  */
-public class RepositoryCommitsViewModelFactory @Inject constructor(
-    public var repositoryCommitsDataSource: RepositoryCommitDetails?
+class RepositoryCommitsViewModelFactory @Inject constructor(
+    private var repositoryCommitsDataSource: RepositoryCommitDetails?
 ) : ViewModelProvider.Factory {
 
 

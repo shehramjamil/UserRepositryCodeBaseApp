@@ -21,7 +21,7 @@ import javax.inject.Inject
  * 1- Getting this User's repositories : "https://api.github.com/users/mralexgray/repos"
  */
 class UserRepositoriesViewModel @Inject constructor(
-    var userRepository: UserRepository
+    private var userRepository: UserRepository
 ) : ViewModel() {
 
     private val _listUserRepositories = MutableLiveData<ApiResponse>()
