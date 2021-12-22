@@ -1,4 +1,4 @@
-package aliabbas.com.scalablecodebaseapp.app_service_calls.responses
+package aliabbas.com.scalablecodebaseapp.domain_user_home.data.model
 
 import com.google.gson.annotations.SerializedName
 

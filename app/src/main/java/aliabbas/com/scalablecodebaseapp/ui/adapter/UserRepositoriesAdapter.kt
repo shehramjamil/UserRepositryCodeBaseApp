@@ -1,13 +1,12 @@
 package aliabbas.com.scalablecodebaseapp.ui.adapter
 
 import aliabbas.com.scalablecodebaseapp.R
-import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.UserRepositoriesModel
+import aliabbas.com.scalablecodebaseapp.domain_user_home.data.model.UserRepositoriesModel
 import aliabbas.com.scalablecodebaseapp.databinding.ItemUserRepositoriesBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
@@ -15,7 +14,7 @@ import javax.inject.Inject
 class UserRepositoriesAdapter @Inject constructor() :
     RecyclerView.Adapter<UserRepositoriesAdapter.ConfigureViewHolderForUnselected>() {
     private val defaultViewType = 0
-    private var lstUserRepositoryModels: List<UserRepositoriesModel>? = listOf()
+    private var lstUserRepositoryModels: List<UserRepositoriesModel> = listOf()
 
     /**
      * Setting the details to display in the Recyclerview
@@ -38,7 +37,7 @@ class UserRepositoriesAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: ConfigureViewHolderForUnselected, position: Int) {
-        holder.bindProfileDetails(lstUserRepositoryModels!![position])
+        holder.bindProfileDetails(lstUserRepositoryModels[position])
     }
 
     /**
@@ -55,7 +54,7 @@ class UserRepositoriesAdapter @Inject constructor() :
             mItemPeopleBinding.materialCardView.setOnClickListener {
                 //Displaying the bottom sheet while passing the bundles with it
                 //setting up the bundles
-                if (!userRepositoriesModel!!.name.contentEquals("")) {
+                if (!userRepositoriesModel?.name.contentEquals("")) {
                     val bundle = bundleOf("userRepository" to userRepositoriesModel)
                     //with the help of Navigation Component navigating Displaying Dialog
                     it.findNavController().navigate(R.id.navigateTodetailFragment, bundle)
@@ -91,7 +90,7 @@ class UserRepositoriesAdapter @Inject constructor() :
      * Returning the size of list
      */
     override fun getItemCount(): Int {
-        return lstUserRepositoryModels!!.size
+        return lstUserRepositoryModels.size
     }
 
 }

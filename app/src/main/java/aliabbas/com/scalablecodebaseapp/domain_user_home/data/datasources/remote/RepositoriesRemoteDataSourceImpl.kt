@@ -1,18 +1,16 @@
-package aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment.data_source
+package aliabbas.com.scalablecodebaseapp.domain_user_home.data.datasources.remote
 
 import aliabbas.com.scalablecodebaseapp.app_service_calls.Api
 import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.ApiResponse
 import aliabbas.com.scalablecodebaseapp.commons.Constants
-import aliabbas.com.scalablecodebaseapp.data.remote.RepositoryDataSource
 import javax.inject.Inject
 
-class RepositoriesDataSource @Inject constructor(var api: Api) :
-    RepositoryDataSource {
+class RepositoriesRemoteDataSourceImpl @Inject constructor(
+    var api: Api
+) : RepositoryRemoteDataSource {
 
     override suspend fun getListUserRepositories(): ApiResponse {
-        val listUserRepositories =
-            api.getUserGithubRepositories(Constants.USER_REPO_LINK)
+        val listUserRepositories = api.getUserGithubRepositories(Constants.USER_REPO_LINK)
         return ApiResponse.ApiResponseSuccess(listUserRepositories)
     }
-
 }

@@ -1,11 +1,11 @@
-package aliabbas.com.scalablecodebaseapp.app_service_calls.responses
+package aliabbas.com.scalablecodebaseapp.domain_user_home.data.model
 
 /**
  * Created By Ali Abbas
  * This Class is used for
  *
  */
-public data class LicenseModel(
+data class LicenseModel(
     val name: String? = null,
     val spdxId: String? = null,
     val key: String? = null,

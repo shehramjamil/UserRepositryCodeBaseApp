@@ -10,5 +10,5 @@ import kotlinx.coroutines.flow.Flow
  */
 interface RepositoryCommitsRemoteDataSource {
 
-    suspend fun getCommitDetailsRepository(repositoryName: String): Flow<ApiResponse>
+    fun getCommitDetailsRepository(repositoryName: String): Flow<ApiResponse>
 }

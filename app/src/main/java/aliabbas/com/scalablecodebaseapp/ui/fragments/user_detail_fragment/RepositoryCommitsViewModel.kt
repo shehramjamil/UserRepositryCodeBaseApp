@@ -1,13 +1,12 @@
 package aliabbas.com.scalablecodebaseapp.ui.fragments.user_detail_fragment
 
 import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.ApiResponse
-import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.UserRepositoriesModel
-import aliabbas.com.scalablecodebaseapp.data.CommitRepositoryRepository
+import aliabbas.com.scalablecodebaseapp.domain_user_home.data.model.UserRepositoriesModel
+import aliabbas.com.scalablecodebaseapp.data.repository.CommitRepositoryRepository
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

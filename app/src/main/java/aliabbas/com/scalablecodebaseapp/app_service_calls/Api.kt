@@ -1,6 +1,6 @@
 package aliabbas.com.scalablecodebaseapp.app_service_calls
 
-import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.UserRepositoriesModel
+import aliabbas.com.scalablecodebaseapp.domain_user_home.data.model.UserRepositoriesModel
 import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.repo_commits.RepositoryCommitsDetailModel
 import retrofit2.http.GET
 import retrofit2.http.Url

@@ -3,7 +3,7 @@ package aliabbas.com.scalablecodebaseapp.di.app_dependencies
 import aliabbas.com.scalablecodebaseapp.app_service_calls.Api
 import aliabbas.com.scalablecodebaseapp.commons.Constants
 import aliabbas.com.scalablecodebaseapp.commons.Constants.formatDDMMYYYYTHHMMSSZ
-import aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment.repository.UserRepositoriesRepository
+import aliabbas.com.scalablecodebaseapp.domain_user_home.data.UserRepositoriesRepositoryImpl
 import aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment.view_model_factory.UserRepositoryViewModelFactory
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.GsonBuilder
@@ -61,8 +61,8 @@ class ApiServiceModule {
     @Provides
     @Singleton
     fun getViewModelFactory(
-        userRepositoriesRepository: UserRepositoriesRepository?
+        userRepositoriesRepositoryImpl: UserRepositoriesRepositoryImpl?
     ): ViewModelProvider.Factory {
-        return UserRepositoryViewModelFactory(userRepositoriesRepository)
+        return UserRepositoryViewModelFactory(userRepositoriesRepositoryImpl)
     }
 }

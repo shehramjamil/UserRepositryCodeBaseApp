@@ -1,9 +1,9 @@
 package aliabbas.com.scalablecodebaseapp.di.app_dependencies
 
-import aliabbas.com.scalablecodebaseapp.data.CommitRepositoryRepository
-import aliabbas.com.scalablecodebaseapp.data.UserRepository
+import aliabbas.com.scalablecodebaseapp.data.repository.CommitRepositoryRepository
+import aliabbas.com.scalablecodebaseapp.domain_user_home.domain.repository.UserRepository
 import aliabbas.com.scalablecodebaseapp.ui.fragments.user_detail_fragment.repository.RepositoryCommitDetails
-import aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment.repository.UserRepositoriesRepository
+import aliabbas.com.scalablecodebaseapp.domain_user_home.data.UserRepositoriesRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
@@ -28,7 +28,7 @@ abstract class RepositoryModule {
     }*/
     @Singleton
     @Binds
-    abstract fun bindRepository(repository: UserRepositoriesRepository): UserRepository
+    abstract fun bindRepository(repositoryImpl: UserRepositoriesRepositoryImpl): UserRepository
 
     @Singleton
     @Binds

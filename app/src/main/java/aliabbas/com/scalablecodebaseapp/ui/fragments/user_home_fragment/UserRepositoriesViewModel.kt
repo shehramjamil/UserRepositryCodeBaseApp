@@ -2,7 +2,7 @@ package aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment
 
 import aliabbas.com.scalablecodebaseapp.R
 import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.ApiResponse
-import aliabbas.com.scalablecodebaseapp.data.UserRepository
+import aliabbas.com.scalablecodebaseapp.domain_user_home.domain.repository.UserRepository
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -20,16 +20,21 @@ import javax.inject.Inject
  * View Model to care of all the data for Github User Repository
  * 1- Getting this User's repositories : "https://api.github.com/users/mralexgray/repos"
  */
+
+// do not inject repositories directly into viewModels
+// create Use-cases and each Use-case responsible for one task
+// Use-case will talk to repository
+
+
 class UserRepositoriesViewModel @Inject constructor(
     private var userRepository: UserRepository
 ) : ViewModel() {
 
     private val _listUserRepositories = MutableLiveData<ApiResponse>()
-    var listUserRepositories: MutableLiveData<ApiResponse> =
-        _listUserRepositories
+    var listUserRepositories: MutableLiveData<ApiResponse> = _listUserRepositories
 
     private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
-        _listUserRepositories.value = ApiResponse.ApiFailure(exception.message!!)
+        _listUserRepositories.value = ApiResponse.ApiFailure(exception.message.toString())
     }
 
     init {

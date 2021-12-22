@@ -19,10 +19,11 @@ import kotlin.collections.ArrayList
  * DataSource class for getting all commit related details for user repository.
  *
  */
-class RepositoryCommitsDataSource @Inject constructor(var api: Api) :
-    RepositoryCommitsRemoteDataSource {
+class RepositoryCommitsRemoteDataSourceImpl @Inject constructor(
+    var api: Api
+) : RepositoryCommitsRemoteDataSource {
 
-    override suspend fun getCommitDetailsRepository(repositoryName: String) =
+    override fun getCommitDetailsRepository(repositoryName: String) =
         repositoryCommitDetailsByMonths(repositoryName)
 
 
@@ -51,7 +52,9 @@ class RepositoryCommitsDataSource @Inject constructor(var api: Api) :
      * This function is responsible for segregating user's repository commits by month's
      */
     @SuppressLint("SimpleDateFormat")
-    fun sortDatesForCommits(listRepositoryCommitsDetailModel: List<RepositoryCommitsDetailModel>): ArrayList<BarData> {
+    fun sortDatesForCommits(
+        listRepositoryCommitsDetailModel: List<RepositoryCommitsDetailModel>
+    ): ArrayList<BarData> {
         //Assigning months to repository by getting the details from commit dates
         for (repositoryCommitsDetailModel in listRepositoryCommitsDetailModel) {
             val commitDate: Date = repositoryCommitsDetailModel.commit!!.committer!!.date!!
@@ -62,14 +65,15 @@ class RepositoryCommitsDataSource @Inject constructor(var api: Api) :
             repositoryCommitsDetailModel.commit.committer!!.months = month
         }
 
+        // Always try to avoid non null assertions.
+
         //Applied group by based on the months, as I have assign in above code.
         val groupCommitByMonths =
             listRepositoryCommitsDetailModel.groupBy { it.commit!!.committer!!.months }
         val arrayList = ArrayList<BarData>()
         for (groupKeyValue in groupCommitByMonths) {
-            val barData =
-                BarData(groupKeyValue.key?.substring(0, 3)!!, groupKeyValue.value.size)
-            arrayList.add(barData)
+            val barData = groupKeyValue.key?.substring(0, 3)?.let { BarData(it, groupKeyValue.value.size) }
+            barData?.let { arrayList.add(it) }
         }
         return arrayList
     }

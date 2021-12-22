@@ -1,4 +1,4 @@
-package aliabbas.com.scalablecodebaseapp.data.remote
+package aliabbas.com.scalablecodebaseapp.domain_user_home.data.datasources.remote
 
 import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.ApiResponse
 
@@ -7,7 +7,7 @@ import aliabbas.com.scalablecodebaseapp.app_service_calls.responses.ApiResponse
  * This Class is used for
  *
  */
-interface RepositoryDataSource {
+interface RepositoryRemoteDataSource {
 
     suspend fun getListUserRepositories(): ApiResponse
 }

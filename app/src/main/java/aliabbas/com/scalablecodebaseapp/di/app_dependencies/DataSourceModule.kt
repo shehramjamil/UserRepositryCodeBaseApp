@@ -1,9 +1,9 @@
 package aliabbas.com.scalablecodebaseapp.di.app_dependencies
 
 import aliabbas.com.scalablecodebaseapp.data.remote.RepositoryCommitsRemoteDataSource
-import aliabbas.com.scalablecodebaseapp.data.remote.RepositoryDataSource
-import aliabbas.com.scalablecodebaseapp.ui.fragments.user_detail_fragment.data_source.RepositoryCommitsDataSource
-import aliabbas.com.scalablecodebaseapp.ui.fragments.user_home_fragment.data_source.RepositoriesDataSource
+import aliabbas.com.scalablecodebaseapp.domain_user_home.data.datasources.remote.RepositoryRemoteDataSource
+import aliabbas.com.scalablecodebaseapp.ui.fragments.user_detail_fragment.data_source.RepositoryCommitsRemoteDataSourceImpl
+import aliabbas.com.scalablecodebaseapp.domain_user_home.userhome.datasource.RepositoriesRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
@@ -18,10 +18,10 @@ abstract class DataSourceModule {
 
     @Singleton
     @Binds
-    abstract fun bindRepositoryDataSource(dataSource: RepositoriesDataSource): RepositoryDataSource
+    abstract fun bindRepositoryDataSource(dataSourceImpl: RepositoriesRemoteDataSourceImpl): RepositoryRemoteDataSource
 
     @Singleton
     @Binds
-    abstract fun bindRepositoryCommitDataSource(repositoryCommitsDataSource: RepositoryCommitsDataSource): RepositoryCommitsRemoteDataSource
+    abstract fun bindRepositoryCommitDataSource(repositoryCommitsRemoteDataSourceImpl: RepositoryCommitsRemoteDataSourceImpl): RepositoryCommitsRemoteDataSource
 
 }
